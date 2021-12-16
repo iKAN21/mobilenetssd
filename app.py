@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory, flash, jsonify
 from werkzeug.utils import secure_filename
-import cv2
+#import cv2
 import numpy as np
 import json
 import requests
@@ -151,14 +151,14 @@ def event_handle(event,json_line):
         msg = str(event["message"]["text"])
         if msg=="สวัสดี":
             replyObj = TextSendMessage(text="ดีด้วย")
-        elif msg=="กินข้าวไหม" :
-            replyObj = TextSendMessage(text="กิน")
-        elif msg=="ไปเที่ยวกันไหม" :
-            replyObj = TextSendMessage(text="ไม่")
-        elif msg=="นอนรึยัง" :
-            replyObj = TextSendMessage(text="ยังโว๊ย")
             line_bot_api.reply_message(rtoken, replyObj)
-        else :
+       elif msg=="กินข้าวไหม" :
+            replyObj = TextSendMessage(text="กิน")
+            line_bot_api.reply_message(rtoken, replyObj)
+       elif msg == "นอนยัง" : 
+            replyObj = TextSendMessage(text="ยังโว๊ย)
+            line_bot_api.reply_message(rtoken, replyObj)                  
+       else :
             headers = request.headers
             json_headers = ({k:v for k, v in headers.items()})
             json_headers.update({'Host':'bots.dialogflow.com'})
