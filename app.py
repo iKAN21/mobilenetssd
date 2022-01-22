@@ -149,22 +149,22 @@ def event_handle(event,json_line):
 
     if msgType == "text":
         msg = str(event["message"]["text"])
-        if msg=="สวัสดี":
+        if (msg=="สวัสดี") :
             replyObj = TextSendMessage(text="ดีด้วย")
             line_bot_api.reply_message(rtoken, replyObj)
-       elif msg=="กินข้าวไหม" :
+        elif (msg=="กินข้าวไหม") :
             replyObj = TextSendMessage(text="กิน")
             line_bot_api.reply_message(rtoken, replyObj)
-       elif msg == "นอนยัง" : 
+        elif (msg == "นอนยัง") : 
             replyObj = TextSendMessage(text="ยังโว๊ย)
             line_bot_api.reply_message(rtoken, replyObj) 
-       elif msg == "covid" :
+        elif msg == "covid" :
             url = "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
             response = requests.get(url)
             response = response.json()
             replyObj = TextSendMessage(text=str(response))
             line_bot_api.reply_message(rtoken, replyObj)                           
-       else :
+        else :
             headers = request.headers
             json_headers = ({k:v for k, v in headers.items()})
             json_headers.update({'Host':'bots.dialogflow.com'})
